@@ -37,3 +37,5 @@ jobs:
         projectId: tijar-7822a
         channelId: ${{ env.CHANNEL_ID }}
         expires: 7d
+      env:
+        CHANNEL_ID: ${{ env.CHANNEL_ID }} # Ensure CHANNEL_ID is set
