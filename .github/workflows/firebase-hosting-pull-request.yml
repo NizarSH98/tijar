@@ -25,4 +25,5 @@ jobs:
         repoToken: "${{ secrets.GITHUB_TOKEN }}"
         firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_TIJAR_7822A }}"
         projectId: tijar-7822a
-        target: preview
+        channelId: preview # Add a channel ID
+        expires: 7d
