@@ -19,21 +19,15 @@ jobs:
     - name: Build project
       run: npm run build
 
-    - name: Print GitHub Context
-      run: |
-        echo "GITHUB_CONTEXT:"
-        echo ${{ toJson(github) }}
-        echo "PR Number: ${{ github.event.pull_request.number }}"
-        echo "Formed Channel ID: pr-${{ github.event.pull_request.number }}"
-
     - name: Set Channel ID
       id: set_channel_id
       run: echo "CHANNEL_ID=pr-${{ github.event.pull_request.number }}" >> $GITHUB_ENV
 
+    - name: Log Channel ID
+      run: echo "Channel ID is ${{ env.CHANNEL_ID }}"
+
     - name: Log Environment Variables
-      run: |
-        echo "Environment Variables:"
-        printenv
+      run: printenv
 
     - name: Deploy to Firebase Hosting
       uses: FirebaseExtended/action-hosting-deploy@v0
