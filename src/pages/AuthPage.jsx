@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { TextField, Button, Container, Typography, Paper, Tabs, Tab, Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
+import { auth } from '../firebase';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 
 const FormWrapper = styled(Paper)`
   padding: 24px;
@@ -30,21 +32,30 @@ const TabPanel = (props) => {
 
 const AuthPage = () => {
   const [value, setValue] = useState(0);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [phone, setPhone] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    // Handle login logic here
-    navigate('/profile');
+  const handleLogin = async () => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      navigate('/profile');
+    } catch (error) {
+      alert('Invalid credentials');
+    }
   };
 
-  const handleSignup = () => {
-    // Handle signup logic here
-    navigate('/profile');
+  const handleSignup = async () => {
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      // Save additional user info to Firebase (if needed)
+      navigate('/profile');
+    } catch (error) {
+      alert('Error creating account');
+    }
   };
 
   const handleChange = (event, newValue) => {
