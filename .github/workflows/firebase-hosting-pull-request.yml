@@ -24,8 +24,8 @@ jobs:
         echo "GITHUB_CONTEXT:"
         echo ${{ toJson(github) }}
         echo "PR Number: ${{ github.event.pull_request.number }}"
-        echo "Channel ID: pr-${{ github.event.pull_request.number }}"
-
+        echo "Formed Channel ID: pr-${{ github.event.pull_request.number }}"
+    
     - name: Set Channel ID
       id: set_channel_id
       run: echo "CHANNEL_ID=pr-${{ github.event.pull_request.number }}" >> $GITHUB_ENV
