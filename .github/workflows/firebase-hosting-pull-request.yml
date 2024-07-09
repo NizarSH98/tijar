@@ -19,23 +19,11 @@ jobs:
     - name: Build project
       run: npm run build
 
-    - name: Set Channel ID
-      id: set_channel_id
-      run: echo "CHANNEL_ID=pr-${{ github.event.pull_request.number }}" >> $GITHUB_ENV
-
-    - name: Log Channel ID
-      run: echo "Channel ID is ${{ env.CHANNEL_ID }}"
-
-    - name: Log Environment Variables
-      run: printenv
-
     - name: Deploy to Firebase Hosting
       uses: FirebaseExtended/action-hosting-deploy@v0
       with:
         repoToken: "${{ secrets.GITHUB_TOKEN }}"
         firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_TIJAR_7822A }}"
         projectId: tijar-7822a
-        channelId: ${{ env.CHANNEL_ID }}
+        channelId: pr-test # Use the manually created channel ID
         expires: 7d
-      env:
-        CHANNEL_ID: ${{ env.CHANNEL_ID }} # Ensure CHANNEL_ID is set
