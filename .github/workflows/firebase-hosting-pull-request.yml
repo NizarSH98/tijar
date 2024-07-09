@@ -26,11 +26,15 @@ jobs:
         echo "PR Number: ${{ github.event.pull_request.number }}"
         echo "Channel ID: pr-${{ github.event.pull_request.number }}"
 
+    - name: Set Channel ID
+      id: set_channel_id
+      run: echo "CHANNEL_ID=pr-${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+
     - name: Deploy to Firebase Hosting
       uses: FirebaseExtended/action-hosting-deploy@v0
       with:
         repoToken: "${{ secrets.GITHUB_TOKEN }}"
         firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_TIJAR_7822A }}"
         projectId: tijar-7822a
-        channelId: pr-${{ github.event.pull_request.number }}
+        channelId: ${{ env.CHANNEL_ID }}
         expires: 7d
