@@ -25,5 +25,5 @@ jobs:
         repoToken: "${{ secrets.GITHUB_TOKEN }}"
         firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_TIJAR_7822A }}"
         projectId: tijar-7822a
-        channelId: pr-${{ github.event.number }} # Unique channel ID for each PR
+        channelId: pr-${{ github.event.pull_request.number }} # Unique channel ID for each PR
         expires: 7d
