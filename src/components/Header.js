@@ -1,25 +1,34 @@
-// src/components/Header.js
 import React from 'react';
+import { AppBar, Toolbar, Typography, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
-
-const Nav = styled.nav`
-  display: flex;
-  justify-content: space-between;
-  padding: 16px;
-  background-color: #333;
-  color: #fff;
+const StyledLink = styled(Link)`
+  color: inherit;
+  text-decoration: none;
+  margin-left: 16px;
 `;
 
 const Header = () => {
   return (
-    <Nav>
-      <Link to="/" style={{ color: '#fff' }}>Home</Link>
-      <h1>Tijar</h1>
-      <Link to="/products" style={{ color: '#fff' }}>Products</Link>
-      {/* Add more links as needed */}
-    </Nav>
+    <AppBar position="static">
+      <Toolbar>
+        <Typography variant="h6" style={{ flexGrow: 1 }}>
+          <Link to="/" style={{ color: 'inherit', textDecoration: 'none' }}>
+            Tijar
+          </Link>
+        </Typography>
+        <StyledLink to="/products">
+          <Button color="inherit">Products</Button>
+        </StyledLink>
+        <StyledLink to="/auth">
+          <Button color="inherit">Login / Signup</Button>
+        </StyledLink>
+        <StyledLink to="/profile">
+          <Button color="inherit">Profile</Button>
+        </StyledLink>
+      </Toolbar>
+    </AppBar>
   );
 };
 

@@ -1,0 +1,8 @@
+.footer {
+    padding: 20px;
+    background: url('../images/footer-bg.jpg') no-repeat center center;
+    background-size: cover;
+    color: white; /* Ensure text is readable against the background */
+    text-align: center;
+  }
+  

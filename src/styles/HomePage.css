@@ -1,0 +1,31 @@
+.hero-section {
+    background: url('../assets/hero-image-updated.png') no-repeat center center;
+    background-size: cover;
+    padding: 50px 20px;
+    position: relative;
+    color: #333333; /* Dark shade for general text */
+  }
+  
+  .hero-overlay {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    padding: 20px;
+    border-radius: 8px;
+    display: inline-block;
+  }
+  
+  .hero-section h1 {
+    color: #ffffff; /* Gold color to match the theme */
+    font-family: 'Roboto', sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add shadow to the text */
+  }
+  
+
+  
+  .Footer {
+    padding: 20px;
+    background: url('../assets/footer-bg.png') no-repeat center center;
+    background-size: cover;
+    color: white; /* Ensure text is readable against the background */
+    text-align: center;
+  }
+  

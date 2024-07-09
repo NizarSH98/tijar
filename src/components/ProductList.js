@@ -1,26 +1,24 @@
-// src/components/ProductList.js
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { ProductContext } from '../context/ProductContext';
 import ProductCard from './ProductCard';
-import axios from 'axios';
-import '../styles/ProductList.css'; // Correct import path for ProductList.css
+import axios from 'axios'; // Import axios
+import '../styles/ProductList.css'; 
 
-const ProductList = () => {
-  const { categories, setCategories } = useContext(ProductContext); // Destructure setCategories from context
+const ProductList = ({ categories }) => {
+  const { setCategories } = useContext(ProductContext);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get('http://localhost:3001/categories');
-        setCategories(response.data); // Update categories state with fetched data
-        console.log('Fetched Data:', response.data);
+        setCategories(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
 
     fetchData();
-  }, [setCategories]); // Add setCategories to dependency array to avoid eslint warning
+  }, [setCategories]);
 
   if (!categories || categories.length === 0) {
     return <p>Loading...</p>;
