@@ -19,11 +19,14 @@ jobs:
     - name: Build project
       run: npm run build
 
+    - name: Print GitHub Context
+      run: echo "PR Number: ${{ github.event.pull_request.number }}"
+    
     - name: Deploy to Firebase Hosting
       uses: FirebaseExtended/action-hosting-deploy@v0
       with:
         repoToken: "${{ secrets.GITHUB_TOKEN }}"
         firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_TIJAR_7822A }}"
         projectId: tijar-7822a
-        channelId: pr-${{ github.event.number }} # Unique channel ID for each PR
+        channelId: pr-${{ github.event.pull_request.number || github.event.number || github.sha }} # Unique channel ID for each PR
         expires: 7d
