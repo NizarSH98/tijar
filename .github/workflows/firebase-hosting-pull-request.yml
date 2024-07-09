@@ -25,15 +25,15 @@ jobs:
         echo ${{ toJson(github) }}
         echo "PR Number: ${{ github.event.pull_request.number }}"
         echo "Formed Channel ID: pr-${{ github.event.pull_request.number }}"
-
+    
     - name: Set Channel ID
       id: set_channel_id
-      run: |
-        echo "CHANNEL_ID=pr-${{ github.event.pull_request.number }}" >> $GITHUB_ENV
-        echo "CHANNEL_ID set to: pr-${{ github.event.pull_request.number }}"
+      run: echo "CHANNEL_ID=pr-${{ github.event.pull_request.number }}" >> $GITHUB_ENV
 
     - name: Log Environment Variables
-      run: printenv
+      run: |
+        echo "Environment Variables:"
+        printenv
 
     - name: Deploy to Firebase Hosting
       uses: FirebaseExtended/action-hosting-deploy@v0
