@@ -10,7 +10,10 @@ export const ProductProvider = ({ children }) => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/categories`);
+        const apiUrl = `${process.env.REACT_APP_API_URL}/categories`;
+        console.log('Fetching from URL:', apiUrl);  // Debugging log
+        const response = await axios.get(apiUrl);
+        console.log('API Response:', response.data);  // Debugging log
         if (Array.isArray(response.data)) {
           setCategories(response.data);
         } else {
@@ -20,9 +23,10 @@ export const ProductProvider = ({ children }) => {
         console.error('Error fetching categories:', error);
       }
     };
-
+  
     fetchCategories();
   }, []);
+  
 
   return (
     <ProductContext.Provider value={{ categories, setCategories }}>
