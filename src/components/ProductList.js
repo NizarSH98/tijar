@@ -10,8 +10,10 @@ const ProductList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/categories`);
-        console.log('API Response:', response.data);
+        const apiUrl = `${process.env.REACT_APP_API_URL}/categories`;
+        console.log('Fetching from URL:', apiUrl);  // Debugging log
+        const response = await axios.get(apiUrl);
+        console.log('API Response:', response.data);  // Debugging log
         if (Array.isArray(response.data)) {
           setCategories(response.data);
         } else {
@@ -21,9 +23,10 @@ const ProductList = () => {
         console.error('Error fetching data:', error);
       }
     };
-
+  
     fetchData();
   }, [setCategories]);
+  
 
   if (!Array.isArray(categories) || categories.length === 0) {
     return <p>Loading...</p>;
