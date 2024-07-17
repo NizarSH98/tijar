@@ -19,11 +19,17 @@ jobs:
     - name: Build project
       run: npm run build
 
+    - name: Debug Info
+      run: |
+        echo "Channel ID: pr-test"
+        echo "Project ID: tijar-7822a"
+        ls -la
+
     - name: Deploy to Firebase Hosting
       uses: FirebaseExtended/action-hosting-deploy@v0
       with:
         repoToken: "${{ secrets.GITHUB_TOKEN }}"
         firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_TIJAR_7822A }}"
         projectId: tijar-7822a
-        channelId: pr-test # Use the manually created channel ID
+        channelId: pr-test # Specify the created channel ID
         expires: 7d
