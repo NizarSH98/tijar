@@ -10,7 +10,8 @@ export const ProductProvider = ({ children }) => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/categories');
+        // Use the environment variable for the API URL
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/categories`);
         setCategories(response.data);
       } catch (error) {
         console.error('Error fetching categories:', error);

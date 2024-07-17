@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import { ProductContext } from '../context/ProductContext';
 import ProductCard from './ProductCard';
-import axios from 'axios'; // Import axios
-import '../styles/ProductList.css'; 
+import axios from 'axios';
+import '../styles/ProductList.css';
 
 const ProductList = ({ categories }) => {
   const { setCategories } = useContext(ProductContext);
@@ -10,7 +10,8 @@ const ProductList = ({ categories }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/categories');
+        // Use the environment variable for the API URL
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/categories`);
         setCategories(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
