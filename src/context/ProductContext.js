@@ -10,16 +10,19 @@ export const ProductProvider = ({ children }) => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        // Use the environment variable for the API URL
         const response = await axios.get(`${process.env.REACT_APP_API_URL}/categories`);
-        setCategories(response.data);
+        if (Array.isArray(response.data)) {
+          setCategories(response.data);
+        } else {
+          console.error('Expected an array but got:', response.data);
+        }
       } catch (error) {
         console.error('Error fetching categories:', error);
       }
     };
 
     fetchCategories();
-  }, []); // Ensure empty dependency array to fetch only once
+  }, []);
 
   return (
     <ProductContext.Provider value={{ categories, setCategories }}>

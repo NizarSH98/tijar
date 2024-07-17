@@ -4,15 +4,19 @@ import ProductCard from './ProductCard';
 import axios from 'axios';
 import '../styles/ProductList.css';
 
-const ProductList = ({ categories }) => {
-  const { setCategories } = useContext(ProductContext);
+const ProductList = () => {
+  const { categories, setCategories } = useContext(ProductContext);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Use the environment variable for the API URL
         const response = await axios.get(`${process.env.REACT_APP_API_URL}/categories`);
-        setCategories(response.data);
+        console.log('API Response:', response.data);
+        if (Array.isArray(response.data)) {
+          setCategories(response.data);
+        } else {
+          console.error('Expected an array but got:', response.data);
+        }
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -21,7 +25,7 @@ const ProductList = ({ categories }) => {
     fetchData();
   }, [setCategories]);
 
-  if (!categories || categories.length === 0) {
+  if (!Array.isArray(categories) || categories.length === 0) {
     return <p>Loading...</p>;
   }
 
