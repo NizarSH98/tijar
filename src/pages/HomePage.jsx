@@ -38,7 +38,7 @@ const HomePage = () => {
       </div>
       <div className="featured-categories">
         <h2>Featured Categories</h2>
-          <ProductCard product={product} />
+          <ProductCard />
       </div>
       <ProductList categories={filteredCategories} />
     </div>
