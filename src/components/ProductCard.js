@@ -1,3 +1,4 @@
+// src/components/ProductCard.js
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Card from '@mui/material/Card';
@@ -21,7 +22,9 @@ const Media = styled(CardMedia)`
   height: 200px;
 `;
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product = {} }) => {
+  console.log('Product Data:', product);  // Debugging log
+
   const navigate = useNavigate();
 
   const handleLearnMore = () => {
@@ -42,10 +45,10 @@ const ProductCard = ({ product }) => {
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {product.name}
+          {product.name || 'Unnamed Product'}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {product.description || product.discription || 'No description available'}
+          {product.description || 'No description available'}
         </Typography>
       </CardContent>
       <CardActions>
