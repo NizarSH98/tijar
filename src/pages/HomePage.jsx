@@ -1,3 +1,4 @@
+// src/pages/HomePage.js
 import React, { useState, useContext, useEffect } from 'react';
 import SearchBar from '../components/SearchBar';
 import ProductList from '../components/ProductList';

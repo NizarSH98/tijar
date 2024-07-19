@@ -23,10 +23,9 @@ export const ProductProvider = ({ children }) => {
         console.error('Error fetching categories:', error);
       }
     };
-  
+
     fetchCategories();
   }, []);
-  
 
   return (
     <ProductContext.Provider value={{ categories, setCategories }}>
