@@ -4,6 +4,7 @@ import SearchBar from '../components/SearchBar';
 import ProductList from '../components/ProductList';
 import { ProductContext } from '../context/ProductContext';
 import '../styles/HomePage.css';
+import ProductCard from '../components/ProductCard';
 
 const HomePage = () => {
   const { categories } = useContext(ProductContext);
