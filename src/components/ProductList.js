@@ -9,6 +9,8 @@ const ProductList = ({ categories }) => {
   const context = useContext(ProductContext);
   const categoriesToDisplay = categories || context.categories;
 
+  console.log('Categories to Display:', categoriesToDisplay);  // Debugging log
+
   if (!Array.isArray(categoriesToDisplay) || categoriesToDisplay.length === 0) {
     return <p>Loading...</p>;
   }
@@ -19,9 +21,13 @@ const ProductList = ({ categories }) => {
         <div key={category.id} className="category">
           <h2>{category.name}</h2>
           <div className="products-grid">
-            {category.products.map(product => (
-              <ProductCard key={product.id} product={product} />
-            ))}
+            {Array.isArray(category.products) ? (
+              category.products.map(product => (
+                <ProductCard key={product.id} product={product} />
+              ))
+            ) : (
+              <p>No products available</p>
+            )}
           </div>
         </div>
       ))}
