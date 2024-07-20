@@ -15,8 +15,8 @@ export const ProductProvider = ({ children }) => {
         console.log('Fetching from URL:', apiUrl);  // Debugging log
         const response = await axios.get(apiUrl);
         console.log('API Response:', response.data);  // Debugging log
-        if (response.data && Array.isArray(response.data.categories)) {
-          setCategories(response.data.categories);
+        if (Array.isArray(response.data)) {
+          setCategories(response.data);
         } else {
           console.error('Expected an array but got:', response.data);
         }
