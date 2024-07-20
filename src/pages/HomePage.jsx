@@ -1,4 +1,3 @@
-// src/pages/HomePage.js
 import React, { useState, useContext, useEffect } from 'react';
 import SearchBar from '../components/SearchBar';
 import ProductList from '../components/ProductList';
@@ -10,6 +9,7 @@ const HomePage = () => {
   const [filteredCategories, setFilteredCategories] = useState([]);
 
   useEffect(() => {
+    console.log('Categories:', categories);  // Debugging log
     setFilteredCategories(categories);
   }, [categories]);
 
